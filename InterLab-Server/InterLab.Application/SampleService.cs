@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace InterLab.Application
 {
@@ -19,9 +20,15 @@ namespace InterLab.Application
             HttpClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = HttpClient.GetAsync("?apiKey=bd4007bd-caf0-4697-a2ea-d47fb9f28066").Result;
+            var response = HttpClient.GetAsync("?apiKey=bd4007bd-caf0-4697-a2ea-d47fb9f28066" 
+                + "&showNumResults=true&showReprints=false" 
+                + "&excludeLabel=Non-news&excludeLabel=Opinion"
+                + "&excludeLabel=Paid News&excludeLabel=Roundup"
+                + "&excludeLabel=Press Release&sortBy=date&title=inflation AND prices")
+                .Result;
             if (response.IsSuccessStatusCode)
             {
+                //results = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
                 results = await response.Content.ReadAsStringAsync();
             }
 
