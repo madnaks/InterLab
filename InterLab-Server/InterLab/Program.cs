@@ -1,4 +1,5 @@
 using InterLab.Application;
+using InterLab.Application.Interface;
 using InterLab.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Register services
-builder.Services.AddScoped<ISampleService, SampleService>();
+builder.Services.AddScoped<IStockDataService, StockDataService>();
 // Register your custom typed HttpClient
-builder.Services.AddHttpClient<ISampleService, SampleService>();
+builder.Services.AddHttpClient<IStockDataService, StockDataService>();
 
 var app = builder.Build();
 

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InterLab.Application\InterLab.Application.csproj" />
+    <ProjectReference Include="..\InterLab.Core\InterLab.Core.csproj" />
   </ItemGroup>
 
 </Project>
