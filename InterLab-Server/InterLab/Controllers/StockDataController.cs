@@ -16,10 +16,10 @@ namespace InterLab.Controllers
             _samplesService = samplesService;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Stock>> Get()
+        [HttpPost("GetStocksBySymbols")]
+        public async Task<IEnumerable<Stock>> GetStocksBySymbols([FromBody] IList<string> symbols)
         {
-            return await _samplesService.GetStocks();
+            return await _samplesService.GetStocksBySymbols(symbols);
         }
     }
 }

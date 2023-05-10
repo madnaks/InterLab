@@ -4,9 +4,21 @@
 </mat-toolbar>
 
 <div class="container">
+
+  <div class="stock-filter">
+
+    <mat-chip-listbox [multiple]="true" (change)="symbolsChanging($event)">
+      <mat-chip-option *ngFor="let symbol of symbols" [value]="symbol" selected="true">
+        {{ symbol.name }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+  </div>
+
   <div class="stock-list">
 
     <div *ngFor="let stock of stocks; index as i" class="stock-detail">
+
       <mat-card class="card">
 
         <mat-card-header class="header">
@@ -20,17 +32,16 @@
           </div>
 
           <div class="price-diff-perc">
-            <span *ngIf="stocksPriceDiff[i] >= 0" class="state-arrow">
+            <span *ngIf="stock.price_diff >= 0" class="state-arrow">
               <svg focusable="false" width="16" height="16" viewBox="0 0 24 24">
                 <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
               </svg>
             </span>
-            {{ stocksPriceDiff[i].toFixed(2).toString() }} %
+            {{ stock.price_diff.toFixed(2).toString() }} %
           </div>
 
           <div class="price-diff">
-            <span *ngIf="stocksPriceDiff[i] >= 0">+</span>
-            <span *ngIf="stocksPriceDiff[i] < 0">-</span>
+            <span *ngIf="stock.price_diff >= 0">+</span>
             {{ stock.price - stock.previous_close_price | number:'1.2' }} Aujourd'hui
           </div>
 
@@ -43,6 +54,19 @@
         </mat-card-footer>
 
       </mat-card>
+
     </div>
+
+    <div *ngIf="stocks.length == 0">
+      <p>
+        No data found 
+      </p>
+    </div>
+
   </div>
+
+</div>
+
+<div class="waiter" *ngIf="isWaitingForResponse">
+  <mat-spinner class="spinner"></mat-spinner>
 </div>

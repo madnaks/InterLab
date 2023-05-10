@@ -12,8 +12,7 @@ export class StockService {
 
   constructor(private http: HttpClient) { }
 
-  getStocks(): Observable<Stock[]> {
-    return this.http.get<Stock[]>(this.rootURL);
+  getStocks(symbols: string[]): Observable<Stock[]> {
+    return this.http.post<Stock[]>(this.rootURL + 'GetStocksBySymbols', symbols);
   }
-
 }
