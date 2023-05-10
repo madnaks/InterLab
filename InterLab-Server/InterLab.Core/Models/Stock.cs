@@ -27,5 +27,6 @@ namespace InterLab.Core.Models
         public int volume { get; set; }
         public bool is_extended_hours_price { get; set; }
         public DateTime last_trade_time { get; set; }
+        public double price_diff => ((price - previous_close_price) / previous_close_price) * 100;
     }
 }
