@@ -18,6 +18,7 @@ export class Stock {
     volume: number;
     is_extended_hours_price: boolean;
     last_trade_time: Date;
+    price_diff: number;
 
     constructor() {
         this.ticker = '';
@@ -39,6 +40,6 @@ export class Stock {
         this.volume = 0;
         this.is_extended_hours_price = false;
         this.last_trade_time = new Date();
-
+        this.price_diff = 0;
     }
 }
