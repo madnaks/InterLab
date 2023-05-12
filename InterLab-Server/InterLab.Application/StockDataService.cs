@@ -3,34 +3,45 @@ using InterLab.Application.Interface;
 using InterLab.Core.Models;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace InterLab.Application
 {
     public class StockDataService: IStockDataService
     {
         private HttpClient HttpClient { get; set; }
+        private readonly ILogger<StockDataService> _logger;
 
-        public StockDataService(HttpClient httpClient) {
+        public StockDataService(HttpClient httpClient, ILogger<StockDataService> logger) {
             HttpClient = httpClient;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<Stock>> GetStocksBySymbols(IList<string> symbols)
         {
-            if (!symbols.Any())
-                return new List<Stock>();
+            try
+            {
+                if (!symbols.Any())
+                    return new List<Stock>();
 
-            var response = HttpClient.GetAsync(BuildUri(symbols)).Result;
+                var response = HttpClient.GetAsync(BuildUri(symbols)).Result;
 
-            if (!response.IsSuccessStatusCode)
-                return new List<Stock>();
+                if (!response.IsSuccessStatusCode)
+                    return new List<Stock>();
 
-            string results = await response.Content.ReadAsStringAsync();
-            StockDataAPI stockDataAPI = JsonConvert.DeserializeObject<StockDataAPI>(results);
+                string results = await response.Content.ReadAsStringAsync();
+                StockDataAPI stockDataAPI = JsonConvert.DeserializeObject<StockDataAPI>(results);
 
-            return stockDataAPI.stocks;
+                return stockDataAPI.stocks;
 
-            // Use this mocked data in case StockData.Org API usage has reached the limit
-            // return MockData().Where(x => symbols.Contains(x.ticker));
+                // Use this mocked data in case StockData.Org API usage has reached the limit
+                // return MockData().Where(x => symbols.Contains(x.ticker));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Stock Data Service error {ex}", ex);
+                throw new Exception("Exception", ex);
+            }
         }
 
         private string BuildUri(IList<string> symbols) {
