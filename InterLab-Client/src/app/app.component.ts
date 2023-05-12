@@ -30,6 +30,11 @@ export class AppComponent implements OnInit {
     this.stockService.getStocks(symbols).subscribe(
       result => {
         this.stocks = result;
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
         this.isWaitingForResponse = false;
       }
     );
