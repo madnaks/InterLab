@@ -1,6 +1,16 @@
 .navbar {
   .title {
-    font-family: "Braah One", sans-serif;
+    display: flex;
+    align-items: center;
+    span {
+      font-family: "Braah One", sans-serif;
+      user-select: none;
+
+      font-size: 2rem;
+      height: fit-content;
+      margin-left: 10px;
+      margin-top: 8px;
+    }
   }
   .spacer {
     flex: 1 1 auto;
@@ -12,7 +22,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5%;
+  margin-top: 3%;
+
+  .description-container {
+    text-align: center;
+    .title {
+      font-family: "Google Sans", Roboto, Arial, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 2rem;
+    }
+    .description {
+      display: flex;
+      align-items: center;
+    }
+  }
 
   .stock-filter {
     margin: 15px;
@@ -20,19 +45,24 @@
 
   .stock-list {
     display: inline-grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto auto;
     gap: 15px;
+    margin-top: 2%;
 
     .stock-detail {
       margin-right: 15px;
+      min-width: 450px;
 
       .card {
         padding: 15px;
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
-        transition: all .4s ease ;
+        transition: all 0.4s ease;
 
         .header {
           padding-left: 0;
+          align-items: center;
+          justify-content: space-between;
+
           .title {
             margin: 0;
             padding-top: 2px;
@@ -98,7 +128,6 @@
             word-spacing: 1px;
             color: #137333;
           }
-
         }
 
         .footer {
@@ -112,9 +141,9 @@
         }
       }
 
-      .card:hover {
-        transform: scale(1.03);
-      }
+      // .card:hover {
+      //   transform: scale(1.03);
+      // }
     }
   }
 }
@@ -127,6 +156,7 @@
   top: 0%;
 
   background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
 
   .spinner {
     position: relative;
