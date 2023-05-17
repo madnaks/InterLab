@@ -1,9 +1,42 @@
 <mat-toolbar color="primary" class="navbar">
-  <h1 class="title">InterLab</h1>
-  <div class="spacer"></div>
+  <mat-toolbar-row>
+    <div class="title">
+      <img src="../assets/svg/inter-lab-icon.svg" width="50" height="50">
+      <span>InterLab</span>
+    </div>
+    
+    <div class="spacer"></div>
+    <button mat-icon-button>
+      <mat-icon>bookmark</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="container">
+
+  <div class="description-container">
+
+    <h2 class="title">
+      Bienvenu dans InterLab
+    </h2>
+
+    <div class="description">
+      <p>
+        Explorez les performances boursières de Tesla, Microsoft et Apple avec notre application intuitive. <br>
+        Obtenez des informations précieuses, suivez les tendances historiques et prenez des décisions d'investissement éclairées. <br> <br>
+        Grâce à notre fonction de filtrage unique, vous pouvez facilement vous concentrer sur l'entreprise spécifique que vous souhaitez analyser. <br>
+        De plus, enregistrez vos actions préférées pour un accès rapide et une gestion de portefeuille efficace.
+      </p>
+      <!-- <p>
+        Explore the stock performance of Tesla, Microsoft, and Apple with our intuitive application. <br>
+        Gain valuable insights, track historical trends, and make informed investment decisions. <br> <br>
+        With our unique filtering feature, you can easily focus on the specific company you want to analyze. <br>
+        Additionally, save your favorite stocks for quick access and efficient portfolio management.
+      </p> -->
+      <img src="../assets/gif/stock-app-animation.gif" width="175" height="175">
+    </div>
+
+  </div>
 
   <div class="stock-filter">
 
@@ -23,6 +56,9 @@
 
         <mat-card-header class="header">
           <mat-card-title class="title">{{ stock.ticker }} - {{ stock.name }} </mat-card-title>
+          <button mat-fab color="primary" (click)="saveStock(stock)">
+            <mat-icon>bookmark_border</mat-icon>
+          </button>
         </mat-card-header>
 
         <mat-card-content class="content">
@@ -41,8 +77,8 @@
           </div>
 
           <div class="price-diff">
-            <span *ngIf="stock.price_diff >= 0">+</span>
-            {{ stock.price - stock.previous_close_price | number:'1.2' }} Aujourd'hui
+            <span *ngIf="stock.price_diff_percentage >= 0">+</span>
+            {{ stock.price_diff_percentage | number:'1.2' }} Aujourd'hui
           </div>
 
         </mat-card-content>
@@ -58,9 +94,7 @@
     </div>
 
     <div *ngIf="stocks.length == 0">
-      <p>
-        No data found 
-      </p>
+      <img src="../assets/gif/143392-sad-animation.gif">
     </div>
 
   </div>
