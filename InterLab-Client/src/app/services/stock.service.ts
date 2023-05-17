@@ -8,7 +8,7 @@ import { Stock } from '../models/stock';
 })
 export class StockService {
 
-  readonly rootURL = 'https://localhost:44303/StockData/';
+  readonly rootURL = 'https://localhost:44303/Stock/';
 
   constructor(private http: HttpClient) { }
 
