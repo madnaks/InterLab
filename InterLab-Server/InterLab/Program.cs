@@ -1,6 +1,9 @@
 using InterLab.Application;
 using InterLab.Application.Interface;
+using InterLab.Core.Models;
+using InterLab.Infrastracture;
 using InterLab.MiddleWare;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,16 +16,27 @@ var logger = new LoggerConfiguration()
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
+// Add Automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Add services to the container.
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 // Register services
-builder.Services.AddScoped<IStockDataService, StockDataService>();
+builder.Services.AddScoped<IStockService, StockService>();
+builder.Services.AddScoped<IBookMarkStockService, BookMarkStockService>();
+
 // Register your custom typed HttpClient
-builder.Services.AddHttpClient<IStockDataService, StockDataService>();
+builder.Services.AddHttpClient<IStockService, StockService>();
+
+//
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<InterLabDbContext>(opt =>
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Add new policy for localhost origin
 builder.Services.AddCors(options =>
@@ -36,6 +50,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

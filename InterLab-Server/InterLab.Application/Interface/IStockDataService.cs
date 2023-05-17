@@ -1,9 +1,9 @@
-﻿using InterLab.Core.Models;
+﻿using InterLab.Core.Dto;
 
 namespace InterLab.Application.Interface
 {
-    public interface IStockDataService
+    public interface IStockService
     {
-        Task<IEnumerable<Stock>> GetStocksBySymbols(IList<string> symbols);
+        Task<IEnumerable<StockDto>> GetStocksBySymbols(IList<string> symbols);
     }
 }
