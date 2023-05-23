@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using InterLab.Core.Models;
 using InterLab.Infrastracture;
+using InterLab.Core.Dto;
 
 namespace InterLab.Application
 {
@@ -17,6 +18,13 @@ namespace InterLab.Application
             _logger = logger;
             _mapper = mapper;
             _context = context;
+        }
+        
+        public IEnumerable<StockDto> GetBookmarkStocks(string symbol, string date)
+        {
+            var parsedDate = DateTime.Parse(date);
+
+            return _mapper.Map<List<StockDto>>(_context.BookMarkStocks.Where(stock => stock.Ticker == symbol && stock.CreatedDate.Date == parsedDate.Date).ToList());
         }
 
         public void SaveBookMarkStock(BookMarkStock bookMarkStock)

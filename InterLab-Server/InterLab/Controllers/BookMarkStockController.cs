@@ -21,6 +21,12 @@ namespace InterLab.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("GetBookmarkStocks/{symbol}/{date}")]
+        public IEnumerable<StockDto> GetBookmarkStocks(string symbol, string date)
+        {
+            return _bookMarkStockService.GetBookmarkStocks(symbol, date);
+        }
+
         [HttpPost("SaveBookMarkStock")]
         public IActionResult SaveStock([FromBody] StockDto stockDto)
         {
