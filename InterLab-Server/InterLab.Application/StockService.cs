@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using InterLab.Core.Dto;
 using AutoMapper;
+using Newtonsoft.Json;
 
 namespace InterLab.Application
 {
@@ -27,18 +28,18 @@ namespace InterLab.Application
                 if (!symbols.Any())
                     return new List<StockDto>();
 
-                //var response = HttpClient.GetAsync(BuildUri(symbols)).Result;
+                var response = HttpClient.GetAsync(BuildUri(symbols)).Result;
 
-                //if (!response.IsSuccessStatusCode)
-                //    return new List<StockDto>();
+                if (!response.IsSuccessStatusCode)
+                    return new List<StockDto>();
 
-                //string results = await response.Content.ReadAsStringAsync();
-                //StockDataAPI stockDataAPI = JsonConvert.DeserializeObject<StockDataAPI>(results);
+                string results = await response.Content.ReadAsStringAsync();
+                StockDataAPI stockDataAPI = JsonConvert.DeserializeObject<StockDataAPI>(results);
 
-                //return _mapper.Map<List<StockDto>>(stockDataAPI.stocks);
+                return _mapper.Map<List<StockDto>>(stockDataAPI.stocks);
 
                 // Use this mocked data in case StockData.Org API usage has reached the limit
-                return _mapper.Map<List<StockDto>>(MockData().Where(x => symbols.Contains(x.Ticker)));
+                //return _mapper.Map<List<StockDto>>(MockData().Where(x => symbols.Contains(x.Ticker)));
             }
             catch (Exception ex)
             {

@@ -1,0 +1,76 @@
+.navbar {
+    .title {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        span {
+            font-family: "Braah One", sans-serif;
+            user-select: none;
+
+            font-size: 2rem;
+            height: fit-content;
+            margin-left: 10px;
+            margin-top: 8px;
+        }
+    }
+    .spacer {
+        flex: 1 1 auto;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+
+    .description-container {
+        text-align: center;
+        .title {
+            font-family: "Google Sans", Roboto, Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 2rem;
+        }
+        .description {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .form-filter > form {
+        display: flex;
+        gap: 2%;
+        button {
+            margin-top: 10px;
+        }
+    }
+
+    .bookmark-stock-list {
+        width: 50%;
+        margin-top: 2%;
+        .no-data {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+.waiter {
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    top: 0%;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+
+    .spinner {
+        position: relative;
+        top: 50%;
+        left: 50%;
+    }
+}
