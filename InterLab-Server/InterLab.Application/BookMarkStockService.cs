@@ -31,14 +31,31 @@ namespace InterLab.Application
         {
             try
             {
-                _context.BookMarkStocks.AddAsync(bookMarkStock);
-                _context.SaveChangesAsync();
+                if(CanSaveBookMark(bookMarkStock))
+                {
+                    _context.BookMarkStocks.AddAsync(bookMarkStock);
+                    _context.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new Exception("Vous ne pouvez pas enregistrer deux stocks pour la même société dans un intervalle qui n'a pas dépassé 5 minutes");
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError("BookMark Stock Service error {ex}", ex);
                 throw new Exception("Exception", ex);
             }
+        }
+
+        /// <summary>
+        /// Returns True if there is not one BookMarkStock that has been saved in the last 5 minutes with the same Ticker
+        /// </summary>
+        /// <param name="bookMarkStock"></param>
+        /// <returns>bool</returns>
+        private bool CanSaveBookMark(BookMarkStock bookMarkStock)
+        {
+            return !_context.BookMarkStocks.Any(b => b.Ticker == bookMarkStock.Ticker && (DateTime.Now - b.CreatedDate).TotalMinutes < 5);
         }
     }
 }
