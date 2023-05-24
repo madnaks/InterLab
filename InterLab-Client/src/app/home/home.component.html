@@ -69,16 +69,18 @@
             {{ stock.price | currency: stock.currency:'symbol-narrow' }}
           </div>
 
-          <div class="price-diff-perc">
-            <span *ngIf="stock.price_diff >= 0" class="state-arrow">
-              <svg focusable="false" width="16" height="16" viewBox="0 0 24 24">
-                <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+          <div class="price-diff-perc"
+            [ngClass]="{'positive': stock.price_diff >= 0, 'negative': stock.price_diff < 0}">
+            <span class="state-arrow" [ngClass]="{'arrow-down': stock.price_diff < 0 }">
+              <svg width="16" height="16" viewBox="0 0 12 12">
+                <path d="M6,0.002L0 6.002 4.8 6.002 4.8 11.9996 7.2 11.9996 7.2 6.002 12 6.002z"></path>
               </svg>
             </span>
             {{ stock.price_diff.toFixed(2).toString() }} %
           </div>
 
-          <div class="price-diff">
+          <div class="price-diff" [ngClass]="{'positive': stock.price_diff_percentage >= 0,
+            'negative': stock.price_diff_percentage < 0 }">
             <span *ngIf="stock.price_diff_percentage >= 0">+</span>
             {{ stock.price_diff_percentage | number:'1.2' }} Aujourd'hui
           </div>
