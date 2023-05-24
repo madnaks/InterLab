@@ -117,6 +117,11 @@
                 fill: currentColor;
                 flex-shrink: 0;
               }
+              &.arrow-down {
+                transform: rotate(180deg);
+                margin-right: 5px;
+                margin-bottom: 2px;
+              }
             }
           }
 
@@ -127,7 +132,14 @@
             font-weight: 500;
             line-height: 1.5rem;
             word-spacing: 1px;
+          }
+
+          .positive {
             color: #137333;
+          }
+
+          .negative {
+            color: #d93025;
           }
         }
 
