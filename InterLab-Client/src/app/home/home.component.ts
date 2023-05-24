@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { StockService } from '../services/stock.service';
-import { Stock } from '../models/stock';
+import { StockService } from '../core/services/stock.service';
+import { Stock } from '../core/models/stock';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BookMarkStockService } from '../services/bookmarkstock.service';
+import { BookMarkStockService } from '../core/services/bookmarkstock.service';
 
 @Component({
   selector: 'app-home',

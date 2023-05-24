@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookMarkStockService } from '../services/bookmarkstock.service';
-import { Stock } from '../models/stock';
+import { BookMarkStockService } from '../core/services/bookmarkstock.service';
+import { Stock } from '../core/models/stock';
 import { DatePipe } from '@angular/common';
 
 @Component({

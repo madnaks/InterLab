@@ -1,0 +1,19 @@
+.navbar {
+    .title {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        span {
+            font-family: "Braah One", sans-serif;
+            user-select: none;
+
+            font-size: 2rem;
+            height: fit-content;
+            margin-left: 10px;
+            margin-top: 8px;
+        }
+    }
+    .spacer {
+        flex: 1 1 auto;
+    }
+}
