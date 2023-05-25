@@ -44,7 +44,7 @@ export class HomeComponent {
     this.bookMarkStockService.saveBookMarkStock(stock).subscribe({
       next: () => this._snackBar.open("Stock enregistré avec succès", undefined, { panelClass: 'success-snack-bar', duration: 1500 }),
       error: error => { 
-        this._snackBar.open("Erreur de sauvegarde du stock", undefined, { panelClass: 'error-snack-bar', duration: 1500 });
+        this._snackBar.open(error.error.errorMessage, undefined, { panelClass: 'error-snack-bar', duration: 1500 });
         this.isWaitingForResponse = false;
       },
       complete: () => this.isWaitingForResponse = false

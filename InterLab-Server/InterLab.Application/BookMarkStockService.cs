@@ -4,6 +4,7 @@ using AutoMapper;
 using InterLab.Core.Models;
 using InterLab.Infrastracture;
 using InterLab.Core.Dto;
+using InterLab.Core.Exceptions;
 
 namespace InterLab.Application
 {
@@ -22,9 +23,7 @@ namespace InterLab.Application
         
         public IEnumerable<StockDto> GetBookmarkStocks(string symbol, string date)
         {
-            var parsedDate = DateTime.Parse(date);
-
-            return _mapper.Map<List<StockDto>>(_context.BookMarkStocks.Where(stock => stock.Ticker == symbol && stock.CreatedDate.Date == parsedDate.Date).ToList());
+            return _mapper.Map<List<StockDto>>(_context.BookMarkStocks.Where(stock => stock.Ticker == symbol && stock.CreatedDate.Date == DateTime.Parse(date).Date).ToList());
         }
 
         public void SaveBookMarkStock(BookMarkStock bookMarkStock)
@@ -38,13 +37,18 @@ namespace InterLab.Application
                 }
                 else
                 {
-                    throw new Exception("Vous ne pouvez pas enregistrer deux stocks pour la même société dans un intervalle qui n'a pas dépassé 5 minutes");
+                    throw new BadRequestException("Vous ne pouvez pas enregistrer deux stocks pour la même société dans un intervalle qui n'a pas dépassé 5 minutes");
                 }
+            }
+            catch (BadRequestException ex)
+            {
+                _logger.LogError("BookMark Stock Service error => {ex}", ex);
+                throw new BadRequestException(ex.Message);
             }
             catch (Exception ex)
             {
-                _logger.LogError("BookMark Stock Service error {ex}", ex);
-                throw new Exception("Exception", ex);
+                _logger.LogError("BookMark Stock Service error => {ex}", ex);
+                throw new Exception(ex.Message, ex);
             }
         }
 

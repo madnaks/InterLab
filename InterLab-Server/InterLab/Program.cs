@@ -1,6 +1,6 @@
 using InterLab.Application;
 using InterLab.Application.Interface;
-using InterLab.Core.Models;
+using InterLab.Configuration;
 using InterLab.Infrastracture;
 using InterLab.MiddleWare;
 using Microsoft.EntityFrameworkCore;
@@ -71,5 +71,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.AddGlobalErrorHandler();
 
 app.Run();
