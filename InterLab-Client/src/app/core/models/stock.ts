@@ -1,4 +1,5 @@
 export class Stock {
+    createdDate: Date;
     ticker: string;
     name: string;
     exchange_short: string;
@@ -10,6 +11,7 @@ export class Stock {
     price_diff_percentage: number;
 
     constructor() {
+        this.createdDate = new Date();
         this.ticker = '';
         this.name = '';
         this.exchange_short = '';

@@ -2,6 +2,7 @@
 {
     public class StockDto
     {
+        public DateTime? CreatedDate { get; set; }
         public string? Ticker { get; set; }
         public string? Name { get; set; }
         public string? Exchange_short { get; set; }
