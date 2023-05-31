@@ -23,7 +23,7 @@ namespace InterLab.Application
         
         public IEnumerable<StockDto> GetBookmarkStocks(string symbol, string date)
         {
-            return _mapper.Map<List<StockDto>>(_context.BookMarkStocks.Where(stock => stock.Ticker == symbol && stock.CreatedDate.Date == DateTime.Parse(date).Date).ToList());
+            return _mapper.Map<List<StockDto>>(_context.BookMarkStocks.Where(stock => stock.Ticker == symbol && stock.CreatedDate.Date == DateTime.Parse(date).Date).OrderBy(stock => stock.CreatedDate).ToList());
         }
 
         public void SaveBookMarkStock(BookMarkStock bookMarkStock)
@@ -32,6 +32,7 @@ namespace InterLab.Application
             {
                 if(CanSaveBookMark(bookMarkStock))
                 {
+                    bookMarkStock.CreatedDate = DateTime.Now;
                     _context.BookMarkStocks.AddAsync(bookMarkStock);
                     _context.SaveChangesAsync();
                 }
