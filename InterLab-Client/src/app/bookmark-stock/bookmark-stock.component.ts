@@ -17,7 +17,7 @@ export class BookmarkStockComponent {
     { symbol: 'TSLA', name: 'Tesla' },
   ];
   stocks: Stock[] = [];
-  displayedColumns: string[] = ['createdDate', 'price', 'previous_close_price', 'price_diff', 'price_diff_percentage'];
+  displayedColumns: string[] = ['createdDate', 'price', 'price_diff', 'price_diff_percentage'];
   isWaitingForResponse: boolean = false;
 
   constructor(
@@ -40,5 +40,27 @@ export class BookmarkStockComponent {
       error: () => (this.isWaitingForResponse = false),
       complete: () => (this.isWaitingForResponse = false),
     });
+  }
+
+  public getClass(index: number, price_diff_percentage: number): string {
+    if (index === 0) {
+      return price_diff_percentage < 0 ? 'negative' : 'positive';
+    }
+
+    if (price_diff_percentage - this.stocks[index - 1].price_diff_percentage >= 0) {
+      return 'positive';
+    } else {
+      return 'negative';
+    }
+  }
+
+  public isArrowDown(index: number, price_diff_percentage: number) {
+    if (index === 0 && price_diff_percentage < 0) {
+      return true;
+    } else if (index != 0 && price_diff_percentage - this.stocks[index - 1].price_diff_percentage < 0) {
+      return true;
+    }
+
+    return false;
   }
 }

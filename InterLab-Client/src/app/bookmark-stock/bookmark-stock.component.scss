@@ -35,5 +35,40 @@
             display: flex;
             justify-content: center;
         }
+        .previous-close {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            margin: 2% 0;
+
+            letter-spacing: 0.025em;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            line-height: 1rem;
+            color: #5f6368;
+        }
+    }
+    .state-arrow {
+        line-height: 1rem;
+        margin-right: 4px;
+        > svg {
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+        &.arrow-down > svg {
+            transform: rotate(180deg);
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
+    }
+
+    .positive {
+        color: #137333;
+    }
+
+    .negative {
+        color: #d93025;
     }
 }
