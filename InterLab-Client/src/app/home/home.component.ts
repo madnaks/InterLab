@@ -42,9 +42,9 @@ export class HomeComponent {
   public saveStock(stock: Stock) {
     this.isWaitingForResponse = true;
     this.bookMarkStockService.saveBookMarkStock(stock).subscribe({
-      next: () => this._snackBar.open("Stock enregistré avec succès", undefined, { panelClass: 'success-snack-bar', duration: 1500 }),
+      next: () => this._snackBar.open("Stock enregistré avec succès", undefined, { panelClass: 'success-snack-bar', duration: 2500 }),
       error: error => { 
-        this._snackBar.open(error.error.errorMessage, undefined, { panelClass: 'error-snack-bar', duration: 1500 });
+        this._snackBar.open(error.error.errorMessage, undefined, { panelClass: 'error-snack-bar', duration: 2500 });
         this.isWaitingForResponse = false;
       },
       complete: () => this.isWaitingForResponse = false
