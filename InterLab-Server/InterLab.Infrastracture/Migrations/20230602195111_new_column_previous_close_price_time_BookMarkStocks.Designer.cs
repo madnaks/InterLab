@@ -3,6 +3,7 @@ using System;
 using InterLab.Infrastracture;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InterLab.Infrastracture.Migrations
 {
     [DbContext(typeof(InterLabDbContext))]
-    partial class InterLabDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230602195111_new_column_previous_close_price_time_BookMarkStocks")]
+    partial class new_column_previous_close_price_time_BookMarkStocks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
