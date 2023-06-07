@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 const AngularMaterialModules = [
   MatCardModule,
@@ -28,21 +29,14 @@ const AngularMaterialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatInputModule,
-  MatTableModule
+  MatTableModule,
+  MatMenuModule
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AngularMaterialModules
-  ],
-  exports: [
-    AngularMaterialModules
-  ],
-  providers: [
-    MatDatepickerModule,
-    DatePipe
-  ]
+  imports: [CommonModule, AngularMaterialModules],
+  exports: [AngularMaterialModules],
+  providers: [MatDatepickerModule, DatePipe],
 })
-export class SharedModule { }
+export class SharedModule {}

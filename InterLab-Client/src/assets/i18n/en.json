@@ -1,0 +1,31 @@
+{
+  "Navbar": {
+    "Language": {
+      "English": "English",
+      "French": "French"
+    }
+  },
+  "Home": {
+    "Title": "Welcome to InterLab",
+    "Description": "Explore the stock performance of Tesla, Microsoft, and Apple with our intuitive application. <br> Gain valuable insights, track historical trends, and make informed investment decisions. <br> <br> With our unique filtering feature, you can easily focus on the specific company you want to analyze. <br> Additionally, save your favorite stocks for quick access and efficient portfolio management.",
+    "StockList": {
+      "Today": "Today"
+    }
+  },
+  "Bookmark": {
+    "Title": "List of bookmarks",
+    "Description": "Here you find the stock market performances which you have registered in the home page by date. <br /> <br /> Please enter a date and the company",
+    "BookmarkFilter": {
+      "None": "-- NONE --",
+      "ChooseADate":"Choose a date",
+      "Search": "Search"
+    },
+    "BookmarkList": {
+      "PreviousClosePrice": "Previous closing price : ",
+      "Time": "Time",
+      "Price": "Price",
+      "PriceDiff": "Price difference",
+      "PriceDiffPercentage": "Price difference (%)"
+    }
+  }
+}

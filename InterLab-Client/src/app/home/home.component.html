@@ -1,47 +1,27 @@
 <div class="container">
 
   <div class="description-container">
-
     <h2 class="title">
-      Bienvenu dans InterLab
+      {{ "Home.Title" | translate }}
     </h2>
 
     <div class="description">
-      <p>
-        Explorez les performances boursières de Tesla, Microsoft et Apple avec notre application intuitive. <br>
-        Obtenez des informations précieuses, suivez les tendances historiques et prenez des décisions d'investissement
-        éclairées. <br> <br>
-        Grâce à notre fonction de filtrage unique, vous pouvez facilement vous concentrer sur l'entreprise spécifique
-        que vous souhaitez analyser. <br>
-        De plus, enregistrez vos actions préférées pour un accès rapide et une gestion de portefeuille efficace.
-      </p>
-      <!-- <p>
-          Explore the stock performance of Tesla, Microsoft, and Apple with our intuitive application. <br>
-          Gain valuable insights, track historical trends, and make informed investment decisions. <br> <br>
-          With our unique filtering feature, you can easily focus on the specific company you want to analyze. <br>
-          Additionally, save your favorite stocks for quick access and efficient portfolio management.
-        </p> -->
-      <img src="../assets/gif/stock-app-animation.gif" width="175" height="175">
+      <p [innerHTML]="'Home.Description' | translate"></p>
+      <img src="../assets/gif/stock-app-animation.gif" width="175" height="175" />
     </div>
-
   </div>
 
   <div class="stock-filter">
-
     <mat-chip-listbox [multiple]="true" (change)="symbolsChanging($event)">
       <mat-chip-option *ngFor="let symbol of symbols" [value]="symbol" selected="true">
         {{ symbol.name }}
       </mat-chip-option>
     </mat-chip-listbox>
-
   </div>
 
   <div class="stock-list">
-
     <div *ngFor="let stock of stocks; index as i" class="stock-detail">
-
       <mat-card class="card">
-
         <mat-card-header class="header">
           <mat-card-title class="title">{{ stock.ticker }} - {{ stock.name }} </mat-card-title>
           <button mat-fab color="primary" (click)="saveStock(stock)">
@@ -50,14 +30,15 @@
         </mat-card-header>
 
         <mat-card-content class="content">
-
           <div class="price">
-            {{ stock.price | currency: stock.currency:'symbol-narrow' }}
+            {{ stock.price | currency : stock.currency : "symbol-narrow" }}
           </div>
 
-          <div class="price-diff-perc"
-            [ngClass]="{'positive': stock.price_diff_percentage >= 0, 'negative': stock.price_diff_percentage < 0}">
-            <span class="state-arrow" [ngClass]="{'arrow-down': stock.price_diff_percentage < 0 }">
+          <div
+            class="price-diff-perc"
+            [ngClass]="{ positive: stock.price_diff_percentage >= 0, negative: stock.price_diff_percentage < 0 }"
+          >
+            <span class="state-arrow" [ngClass]="{ 'arrow-down': stock.price_diff_percentage < 0 }">
               <svg width="16" height="16" viewBox="0 0 12 12">
                 <path d="M6,0.002L0 6.002 4.8 6.002 4.8 11.9996 7.2 11.9996 7.2 6.002 12 6.002z"></path>
               </svg>
@@ -65,30 +46,25 @@
             {{ stock.price_diff_percentage.toFixed(2).toString() }} %
           </div>
 
-          <div class="price-diff" [ngClass]="{'positive': stock.price_diff >= 0,
-            'negative': stock.price_diff < 0 }">
+          <div class="price-diff" [ngClass]="{ positive: stock.price_diff >= 0, negative: stock.price_diff < 0 }">
             <span *ngIf="stock.price_diff >= 0">+</span>
-            {{ stock.price_diff.toFixed(2).toString() }} Aujourd'hui
+            {{ stock.price_diff.toFixed(2).toString() }} {{ "Home.StockList.Today" | translate }}
           </div>
-
         </mat-card-content>
 
         <mat-card-footer class="footer">
           <span>
-            {{ stock.last_trade_time | date:'medium' }} - {{ stock.currency }} - {{ stock.exchange_short }}
+            {{ stock.last_trade_time | date : "medium" }} - {{ stock.currency }} - {{ stock.exchange_short }}
           </span>
         </mat-card-footer>
-
       </mat-card>
-
     </div>
 
     <div *ngIf="stocks.length == 0">
-      <img src="../assets/gif/143392-sad-animation.gif">
+      <img src="../assets/gif/143392-sad-animation.gif" />
     </div>
-
   </div>
-
+  
 </div>
 
 <app-waiter [wait]="isWaitingForResponse"></app-waiter>
