@@ -1,41 +1,38 @@
 <div class="container">
   <div class="description-container">
-    <h2 class="title">Liste des enregistrements</h2>
+    <h2 class="title">{{ 'Bookmark.Title' | translate}}</h2>
 
     <div class="description">
-      <p>
-        Ici vous trouvez les performances boursières qui vous avez enregistré dans la page d'accueil par date.
-        <br />
-        <br />
-        Veuillez saisir une date et la sociéte
-      </p>
+      <p [innerHTML]="'Bookmark.Description' | translate"></p>
     </div>
   </div>
 
-  <div class="form-filter">
+  <div class="bookmark-stock-filter">
     <form [formGroup]="bookmarkStockForm" (ngSubmit)="getBookmarkStocks(bookmarkStockForm)">
       <mat-form-field>
         <mat-select formControlName="symbol">
-          <mat-option>-- Aucune --</mat-option>
+          <mat-option>{{ 'Bookmark.BookmarkFilter.None' | translate }}</mat-option>
           <mat-option [value]="option.symbol" *ngFor="let option of symbols">{{ option.name }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Choisissez une date</mat-label>
+        <mat-label>{{ 'Bookmark.BookmarkFilter.ChooseADate' | translate }}</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date" />
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!bookmarkStockForm.valid">Rechercher</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!bookmarkStockForm.valid">
+        {{ 'Bookmark.BookmarkFilter.Search' | translate }}
+      </button>
     </form>
   </div>
 
   <div class="bookmark-stock-list">
     <div *ngIf="stocks.length != 0" class="previous-close">
       <span>
-        <b>Prix ​​de clôture précédent : </b>
+        <b>{{ 'Bookmark.BookmarkList.PreviousClosePrice' | translate}}</b>
         {{ stocks[0].previous_close_price | currency : stocks[0].currency : "symbol-narrow" }} .
         {{ stocks[0].previous_close_price_time | date : "medium" }}
       </span>
@@ -46,7 +43,7 @@
 
       <!-- Created Date Column -->
       <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef>Temps</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'Bookmark.BookmarkList.Time' | translate }}</th>
         <td mat-cell *matCellDef="let stock">
           {{ stock.createdDate | date : "shortTime" }}
         </td>
@@ -54,13 +51,13 @@
 
       <!-- Price Column -->
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>Prix</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'Bookmark.BookmarkList.Price' | translate }}</th>
         <td mat-cell *matCellDef="let stock">{{ stock.price | currency : stock.currency : "symbol-narrow" }}</td>
       </ng-container>
 
       <!-- Price Diff Price Column -->
       <ng-container matColumnDef="price_diff">
-        <th mat-header-cell *matHeaderCellDef>Différence de prix</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'Bookmark.BookmarkList.PriceDiff' | translate }}</th>
         <td mat-cell *matCellDef="let stock">
           <span *ngIf="stock.price_diff >= 0">+</span>
           {{ stock.price_diff.toFixed(2).toString() }}
@@ -69,7 +66,7 @@
 
       <!-- Previous Close Price Column -->
       <ng-container matColumnDef="price_diff_percentage">
-        <th mat-header-cell *matHeaderCellDef>Différence de prix (%)</th>
+        <th mat-header-cell *matHeaderCellDef>{{ 'Bookmark.BookmarkList.PriceDiffPercentage' | translate }}</th>
         <!-- <td mat-cell  *matCellDef="let stock; let i = index;" [ngClass]="{'positive': stock.price_diff_percentage >= 0, 'negative': stock.price_diff_percentage < 0}"> -->
         <td mat-cell *matCellDef="let stock; let i = index" [class]="getClass(i, stock.price_diff_percentage)">
           {{ stock.price_diff_percentage.toFixed(2).toString() }} %

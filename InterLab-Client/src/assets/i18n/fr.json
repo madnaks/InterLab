@@ -1,0 +1,31 @@
+{
+  "Navbar": {
+    "Language": {
+      "English": "Englais",
+      "French": "Français"
+    }
+  },
+  "Home": {
+    "Title": "Bienvenu dans InterLab",
+    "Description": "Explorez les performances boursières de Tesla, Microsoft et Apple avec notre application intuitive. <br> Obtenez des informations précieuses, suivez les tendances historiques et prenez des décisions d'investissement éclairées. <br> <br> Grâce à notre fonction de filtrage unique, vous pouvez facilement vous concentrer sur l'entreprise spécifique que vous souhaitez analyser. <br> De plus, enregistrez vos actions préférées pour un accès rapide et une gestion de portefeuille efficace.",
+    "StockList": {
+      "Today": "Aujourd'hui"
+    }
+  },
+  "Bookmark": {
+    "Title": "Liste des enregistrements",
+    "Description": "Ici vous trouvez les performances boursières qui vous avez enregistré dans la page d'accueil par date. <br /> <br /> Veuillez saisir une date et la sociéte",
+    "BookmarkFilter": {
+      "None": "-- Aucune --",
+      "ChooseADate":"Choisissez une date",
+      "Search": "Rechercher"
+    },
+    "BookmarkList": {
+      "PreviousClosePrice": "Prix ​​de clôture précédent : ",
+      "Time": "Temps",
+      "Price": "Prix",
+      "PriceDiff": "Différence de prix",
+      "PriceDiffPercentage": "Différence de prix (%)"
+    }
+  }
+}
