@@ -20,7 +20,7 @@ namespace InterLab.Core.Models
 
         [JsonProperty("52_week_low")]
         public double _52_week_low { get; set; }
-        public Int64 Market_cap { get; set; }
+        public long? Market_cap { get; set; }
         public double Previous_close_price { get; set; }
         public DateTime Previous_close_price_time { get; set; }
         public double Day_change { get; set; }
