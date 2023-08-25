@@ -1,7 +1,9 @@
 using InterLab.Application;
-using InterLab.Application.Interface;
+using InterLab.Application.Abstractions.Repositories;
+using InterLab.Application.Abstractions.Services;
 using InterLab.Configuration;
 using InterLab.Infrastracture;
+using InterLab.Infrastracture.Repositories;
 using InterLab.MiddleWare;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -30,8 +32,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<IBookMarkStockService, BookMarkStockService>();
 
+// Register repositories
+builder.Services.AddScoped<IBookMarkStockRepository, BookMarkStockRepository>();
+builder.Services.AddScoped<IStockRepository, StockRepository>();
+
 // Register your custom typed HttpClient
-builder.Services.AddHttpClient<IStockService, StockService>();
+builder.Services.AddHttpClient<IStockRepository, StockRepository>();
 
 //
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<InterLabDbContext>(opt =>
