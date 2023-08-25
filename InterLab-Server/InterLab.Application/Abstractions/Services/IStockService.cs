@@ -1,6 +1,6 @@
 ﻿using InterLab.Core.Dto;
 
-namespace InterLab.Application.Interface
+namespace InterLab.Application.Abstractions.Services
 {
     public interface IStockService
     {

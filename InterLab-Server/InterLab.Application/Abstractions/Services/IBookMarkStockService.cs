@@ -1,7 +1,7 @@
 ﻿using InterLab.Core.Dto;
 using InterLab.Core.Models;
 
-namespace InterLab.Application.Interface
+namespace InterLab.Application.Abstractions.Services
 {
     public interface IBookMarkStockService
     {
