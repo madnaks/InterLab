@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InterLab.Core\InterLab.Core.csproj" />
-    <ProjectReference Include="..\InterLab.Infrastracture\InterLab.Infrastracture.csproj" />
   </ItemGroup>
 
 </Project>

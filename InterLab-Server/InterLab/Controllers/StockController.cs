@@ -1,4 +1,4 @@
-﻿using InterLab.Application.Interface;
+﻿using InterLab.Application.Abstractions.Services;
 using InterLab.Core.Dto;
 using Microsoft.AspNetCore.Mvc;
 
